@@ -1,0 +1,8 @@
+#!/bin/zsh
+# Claude vs DeepSeek chess in a Rex tab. Pass --swap for DeepSeek as White.
+DIR=${0:A:h}
+if [[ ! -x "$DIR/.venv/bin/python" ]]; then
+  echo "First run: creating venv with python-chess…"
+  python3 -m venv "$DIR/.venv" && "$DIR/.venv/bin/pip" install -q --require-hashes -r "$DIR/requirements.txt" || exit 1
+fi
+exec "$DIR/.venv/bin/python" "$DIR/chess_match.py" "$@"
